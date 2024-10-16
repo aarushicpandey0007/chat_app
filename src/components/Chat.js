@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react'; // Import useState
 import { useSelector, useDispatch } from 'react-redux';
 import { sendMessage, receiveMessage, setCurrentConversation } from '../store/chatSlice'; // Import necessary actions
 import { Container, TextField, Button, Paper, Typography, Box, List, ListItem, Avatar } from '@mui/material';
@@ -13,6 +13,7 @@ const Chat = () => {
   const messages = conversation?.messages || []; // Get messages for the current conversation
   const [inputValue, setInputValue] = React.useState('');
   const messageEndRef = useRef(null);
+  const [animate, setAnimate] = useState(false); // State for animation
 
   // Scroll to the last message when the messages change
   useEffect(() => {
@@ -20,6 +21,11 @@ const Chat = () => {
       messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
+
+  // Trigger the animation when the component mounts
+  useEffect(() => {
+    setAnimate(true); // Start the animation
+  }, []);
 
   // Handle sending a message
   const handleSendMessage = () => {
@@ -61,23 +67,42 @@ const Chat = () => {
       {/* Sidebar with conversation list */}
       <Box className="sidebar" sx={{ width: '1300px', borderRight: '1px solid #ccc', overflowY: 'auto', p: 2 }}>
         <Typography variant="h5" sx={{ marginBottom: '16px' }}>Conversations</Typography>
-        <List>
-          {Object.keys(conversations).map((conversationId) => {
-            const conversation = conversations[conversationId];
-            return (
-              <ListItem
-                key={conversationId}
-                button
-                onClick={() => handleConversationClick(conversationId)}
-                selected={conversationId === currentConversationId} // Highlight the selected conversation
-                sx={{ display: 'flex', alignItems: 'center', padding: '10px' }}
-              >
-                <Avatar src={conversation.avatar} alt={conversationId} sx={{ marginRight: '10px' }} />
-                <Typography variant="body1">{conversationId}</Typography>
-              </ListItem>
-            );
-          })}
-        </List>
+        
+        {/* Animated container for conversations list */}
+        <Box
+          className={animate ? 'animate' : ''} // Apply animation class if animate is true
+          sx={{
+            width: '590px',
+            borderRight: '1px solid #ccc',
+            overflowY: 'auto',
+            p: 2,
+            backgroundColor: '#1D2951', // Set sidebar background color
+            color: 'white', // Set text color to white
+            border: '2px solid #007bff', // Add a sparkling blue border
+            height: '89vh',
+            margin: '10px', // Space around the sidebar
+            borderRadius: '8px', // Rounded border
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+          }}
+        >
+          <List>
+            {Object.keys(conversations).map((conversationId) => {
+              const conversation = conversations[conversationId];
+              return (
+                <ListItem
+                  key={conversationId}
+                  button
+                  onClick={() => handleConversationClick(conversationId)}
+                  selected={conversationId === currentConversationId} // Highlight the selected conversation
+                  sx={{ display: 'flex', alignItems: 'center', padding: '10px' }}
+                >
+                  <Avatar src={conversation.avatar} alt={conversationId} sx={{ marginRight: '10px' }} />
+                  <Typography variant="body1">{conversationId}</Typography>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Box>
       </Box>
 
       {/* Chat Window */}
@@ -139,4 +164,3 @@ const Chat = () => {
 };
 
 export default Chat;
-

@@ -1,8 +1,10 @@
 // src/components/Login.js
+
 import React from 'react';
 import { Box, TextField, Button, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/chatSlice';
+import '../styles/LoginSignup.css'; // Import your styles here
 
 const Login = ({ onLogin, onSignupToggle }) => {
   const dispatch = useDispatch();
@@ -24,26 +26,37 @@ const Login = ({ onLogin, onSignupToggle }) => {
           <TextField
             type="text"
             required
-            label="Username"
+            
             variant="outlined"
             fullWidth
+            className="input-field" // Apply common class here
+            placeholder="Enter your username" // Placeholder text
           />
         </div>
         <div className="inputBox">
           <TextField
             type="password"
             required
-            label="Password"
+            
             variant="outlined"
             fullWidth
+            className="input-field" // Apply common class here
+            placeholder="Enter your password" // Placeholder text
           />
         </div>
         <div className="links">
           <a href="#" onClick={onSignupToggle}>Signup</a>
-          <a href="#">Forgot Password</a>
+          <Button 
+            color="primary" 
+            variant="text" 
+            size="small"
+            style={{ textTransform: 'none', fontSize: '0.9em' }}
+          >
+            Forgot Password
+          </Button>
         </div>
         <div className="inputBox">
-          <Button type="submit" variant="contained" color="primary">Login</Button>
+          <button type="submit" className="button">Login</button>
         </div>
       </form>
     </Box>

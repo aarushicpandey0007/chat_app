@@ -22,6 +22,9 @@ const Signup = ({ onSignup }) => {
             label="Username"
             variant="outlined"
             fullWidth
+            inputProps={{
+              style: { color: 'white' } // Set input text color to white
+            }}
           />
         </div>
         <div className="inputBox">
@@ -31,6 +34,9 @@ const Signup = ({ onSignup }) => {
             label="Email"
             variant="outlined"
             fullWidth
+            inputProps={{
+              style: { color: 'white' } // Set input text color to white
+            }}
           />
         </div>
         <div className="inputBox">
@@ -40,6 +46,9 @@ const Signup = ({ onSignup }) => {
             label="Password"
             variant="outlined"
             fullWidth
+            inputProps={{
+              style: { color: 'white' } // Set input text color to white
+            }}
           />
         </div>
         <div className="inputBox">
@@ -49,13 +58,16 @@ const Signup = ({ onSignup }) => {
             label="Confirm Password"
             variant="outlined"
             fullWidth
+            inputProps={{
+              style: { color: 'white' } // Set input text color to white
+            }}
           />
         </div>
         <div className="links">
           <a href="#" onClick={onSignup}>Signin</a>
         </div>
         <div className="inputBox">
-          <Button type="submit" variant="contained" color="primary">Sign Up</Button>
+          <button type="submit" className="button">Sign Up</button>
         </div>
       </form>
     </Box>
@@ -63,3 +75,4 @@ const Signup = ({ onSignup }) => {
 };
 
 export default Signup;
+

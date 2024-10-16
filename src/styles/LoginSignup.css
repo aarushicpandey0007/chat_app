@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -12,17 +12,20 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #000;
+  background-image: url("https://media.istockphoto.com/vectors/social-media-seamless-pattern-doodle-style-vector-id1283724500?k=20&m=1283724500&s=612x612&w=0&h=12MJvmwpo_XRtKKegi6a4ESLSM9yoy0pl8D3kFH5tIo=");
+  background-size: cover;
   overflow: hidden; /* Prevent scrollbars from appearing */
+  padding: 15px;
 }
 
 .container {
   position: relative;
-  width: 400px;
-  background: #222;  
+  max-width: 500px;
+  width: 100%;
+  background: #222;
   z-index: 1000;
   padding: 40px;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
   transition: transform 0.5s ease;
 }
@@ -30,55 +33,83 @@ body {
 .inputBox {
   position: relative;
   width: 100%;
+  margin-bottom: 20px; /* Added gap between input fields */
 }
 
-.inputBox input {
-  position: relative;
+.inputBox input,
+.inputBox input[type="text"],
+.inputBox input[type="email"],
+.inputBox input[type="password"] {
   width: 100%;
   background: #333;
   border: none;
   outline: none;
-  padding: 25px 10px 7.5px;
+  padding: 20px 15px;
   border-radius: 4px;
-  color: #fff;
+  color: #fff; /* Change input text color to white */
   font-weight: 500;
   font-size: 1em;
 }
-
+.inputBox input::placeholder,
+.inputBox input[type="text"]::placeholder,
+.inputBox input[type="email"]::placeholder,
+.inputBox input[type="password"]::placeholder {
+  color: #ccc; /* Change placeholder color to a lighter grey */
+  opacity: 1; /* Ensures the opacity of placeholder is fully visible */
+}
 .links {
-  position: relative;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px; /* Added gap between the links and the button */
 }
 
 .links a {
   color: #fff;
   text-decoration: none;
+  font-size: 0.9em;
 }
 
-.inputBox input[type="submit"],
-.links a {
-  padding: 10px;
-  background: #1D2951; /* Changed from #0f0 to #1D2951 */
-  color: #fff; /* Changed text color to white for contrast */
+.button {
+  padding: 15px;
+  background: #1D2951;
+  color: #fff;
   font-weight: 600;
-  font-size: 1.35em;
+  font-size: 1.2em;
   letter-spacing: 0.05em;
   cursor: pointer;
   border: none;
   border-radius: 4px;
+  transition: background 0.3s ease;
+  width: 100%; /* Make buttons full width */
+} 
+.inputBox input,
+.inputBox .MuiOutlinedInput-root {
+  background-color: #777; /* Grey background */
+  color: white; /* Text color */
 }
 
-input[type="submit"]:active {
-  opacity: 0.6;
+.inputBox .MuiInputLabel-root {
+  color: white; /* Label color */
 }
 
-/* Background squares styles (if required) */
+.inputBox input::placeholder {
+  color: #ccc; /* Placeholder color */
+  opacity: 1; /* Ensures the placeholder is visible */
+}
+
+.button:hover {
+  background: #0f1d44;
+}
+
+.button:active {
+  opacity: 0.8;
+}
+
+/* Optional background square styles */
 section {
   position: absolute;
-  width: 1000vw;
+  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -89,18 +120,15 @@ section {
 }
 
 section span {
-  position: relative;
   display: block;
   width: calc(6.25vw - 2px);
   height: calc(6.25vw - 2px);
   background: #181818;
-  z-index: 2;
   animation: move 3s linear infinite;
 }
 
 section span:hover {
-  background: #1D2951; /* Changed from #0f0 (green) to #1D2951 */
-  transition: 0s;
+  background: #1D2951;
 }
 
 @keyframes move {
@@ -125,9 +153,24 @@ section span:hover {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 600px) {
   section span {
     width: calc(20vw - 2px);
     height: calc(20vw - 2px);
   }
+
+  .container {
+    padding: 20px;
+  }
+
+  .inputBox input,
+  .inputBox input[type="submit"] {
+    padding: 15px;
+    font-size: 0.9em;
+  }
+
+  .links a {
+    font-size: 0.8em;
+  }
 }
+
