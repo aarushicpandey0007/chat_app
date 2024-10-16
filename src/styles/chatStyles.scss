@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:400,500,900&display=swap');
+
+// Colors and variables
+$text-1: #333;
+$text-2: #666;
+$text-3: #999;
+$line: #CCC;
+$time-bg: #EEE;
+
+$background:  #1D2951;
+$background-gradient: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); // The blue gradient
+$badge-bg: #78e08f;
+$contact-bg: rgba(0, 0, 0, 0.3);
+$contact-hover: rgba(0, 0, 0, 0.2);
+$msg-bg: #07133a; // Space blue for messages background
+$msg-bg-send: #78e08f;
+$icon-online: #4cd137;
+$icon-offline: #c23616;
+$chat-bg: #030a22; // Space blue background color
+$space-blue: #1D2951; // New variable for space blue color
+
+body, html {
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 400;
+  line-height: 1.25em;
+  letter-spacing: 0.025em;
+  color: $text-1;
+  background: $background-gradient;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Chat box
+.chat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vw;  // Full width of the screen
+  height: 100vh;  // Full height of the screen
+  z-index: 2;
+  box-sizing: border-box;
+  border-radius: 0;
+  background: $space-blue;  // Space blue background for chat container
+  box-shadow: 0 0 8rem 0 rgba(black, 0.1), 0rem 2rem 4rem -3rem rgba(black, 0.5);
+
+  // Contact bar at the top of chat
+  .contact.bar {
+    flex-basis: 3.5rem;
+    flex-shrink: 0;
+    margin: 1rem;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.3); // Darkened contact bar for contrast
+    display: flex;
+    align-items: center;
+
+    .pic {
+      width: 4rem;
+      height: 4rem;
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      border: 1.5px solid #f5f6fa;
+    }
+
+    .name {
+      font-weight: 500;
+      margin-left: 1rem;
+      color: white; // Make name white for readability
+    }
+  }
+
+  // Messages section
+  .messages {
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2); // Slightly transparent black for message background contrast
+    flex-grow: 1;
+    overflow-y: auto;
+    box-shadow: inset 0 2rem 2rem -2rem rgba(black, 0.05), inset 0 -2rem 2rem -2rem rgba(black, 0.05);
+
+    .time {
+      font-size: 0.8rem;
+      background: $time-bg;
+      padding: 0.25rem 1rem;
+      border-radius: 2rem;
+      color: $text-3;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    // Individual message styling
+    .message {
+      padding: 0.5rem 1rem;
+      margin: 1rem;
+      background: $msg-bg; // Space blue for message bubbles
+      border-radius: 1.125rem 1.125rem 1.125rem 0;
+      min-height: 2.25rem;
+      max-width: 90%; // Increase width of messages
+      box-shadow: 0 0 2rem rgba(black, 0.075), 0 1rem 1rem -1rem rgba(black, 0.1);
+      color: white; // Make message text white for readability
+
+      &.parker {
+        margin-left: auto;
+        border-radius: 1.125rem 1.125rem 0 1.125rem;
+        background: $msg-bg-send;
+        color: white;
+      }
+    }
+  }
+
+  // Input field and send button
+  .input {
+    flex-basis: 4rem;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem 0 1.5rem;
+    background: rgba(0, 0, 0, 0.3); // Darkened input area for contrast
+
+    input {
+      border: none;
+      background-color: $space-blue; // Space blue for the input field
+      padding: 0.5rem 1rem;
+      margin-right: 1rem;
+      border-radius: 1.125rem;
+      flex-grow: 2;
+      color: white;
+      font-family: 'Red Hat Display', sans-serif;
+      font-weight: 400;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+}
